@@ -1,0 +1,97 @@
+/* Vice City Cover Studio — dark neon editor chrome. System fonts only. */
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; }
+body {
+  background: #14101d;
+  color: #f3eefc;
+  font: 14px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+.masthead {
+  display: flex; justify-content: space-between; align-items: flex-end; gap: 16px;
+  padding: 14px 20px 10px; border-bottom: 1px solid #2c2342;
+}
+.masthead h1 {
+  margin: 0; font-size: 26px; letter-spacing: 0.5px;
+  font-family: "Arial Black", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: linear-gradient(90deg, #ff7a3d, #ff2e88 45%, #22d3ee);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.masthead p { margin: 4px 0 0; color: #b9aecf; }
+.masthead .tag { color: #8d84a6; font-size: 12px; white-space: nowrap; }
+.workspace {
+  display: grid; grid-template-columns: 248px minmax(0, 1fr) 264px;
+  gap: 14px; padding: 14px 20px 20px; align-items: start;
+}
+.panel {
+  background: #1e1830; border: 1px solid #2c2342; border-radius: 12px;
+  padding: 14px; display: flex; flex-direction: column; gap: 10px;
+}
+.panel h2 { margin: 2px 0 0; font-size: 13px; text-transform: uppercase; letter-spacing: 1.5px; color: #ffb347; }
+.panel label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; }
+.panel label .val { font-weight: 400; color: #b9aecf; float: right; }
+.hint { margin: 0; color: #8d84a6; font-size: 12px; font-weight: 400; }
+input[type="text"], select {
+  font: inherit; color: #f3eefc; background: #14101d;
+  border: 1px solid #3d3358; border-radius: 7px; padding: 8px;
+}
+input[type="range"] { width: 100%; accent-color: #ff2e88; }
+button {
+  font: inherit; font-weight: 700; color: #f3eefc; background: #2c2342;
+  border: 1px solid #3d3358; border-radius: 8px; padding: 8px 10px; cursor: pointer;
+}
+button:hover { border-color: #ff2e88; }
+button.active { background: #ff2e88; border-color: #ff2e88; color: #fff; }
+button.primary {
+  background: linear-gradient(90deg, #ff7a3d, #ff2e88); border: 0;
+  padding: 12px; font-size: 15px; color: #fff;
+}
+.dropzone {
+  border: 2px dashed #4a3d6e; border-radius: 10px; padding: 16px 10px;
+  text-align: center; color: #b9aecf; cursor: pointer; font-weight: 400;
+}
+.dropzone b { color: #ffb347; }
+.dropzone input { display: none; }
+.dropzone.over { border-color: #ff2e88; background: #2a1230; }
+.tray { display: flex; flex-wrap: wrap; gap: 8px; }
+.tray button {
+  padding: 0; border: 2px solid transparent; border-radius: 8px; overflow: hidden;
+  width: 64px; height: 64px; background: #14101d;
+}
+.tray button.picked { border-color: #ffb347; }
+.tray img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.panel-list { display: flex; gap: 6px; flex-wrap: wrap; }
+.panel-list button { padding: 6px 9px; font-size: 12px; }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.choices button { font-size: 12px; padding: 8px 6px; text-align: left; }
+.grades button { display: flex; align-items: center; gap: 7px; }
+.grades i {
+  width: 18px; height: 18px; border-radius: 50%; flex: none;
+  background: linear-gradient(135deg, var(--g1), var(--g2));
+}
+.presets { display: flex; flex-direction: column; gap: 6px; }
+.presets button { font-size: 12px; text-align: left; }
+.check { flex-direction: row !important; align-items: center; gap: 8px !important; font-weight: 400 !important; }
+.check input { accent-color: #ff2e88; width: 16px; height: 16px; }
+.single-exports { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.single-exports button { font-size: 11px; padding: 7px 4px; }
+#status { margin: 0; color: #7ee2a8; font-size: 12px; min-height: 16px; }
+.preview { display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
+.preview canvas {
+  max-width: 100%; max-height: 62vh; width: auto; height: auto;
+  border-radius: 6px; box-shadow: 0 14px 44px rgba(0, 0, 0, 0.55);
+  background: #0c0913;
+}
+.size-tabs { display: flex; gap: 6px; }
+.size-tabs button { font-size: 12px; }
+
+/* Screenshot scenes: cover alone fills the frame; export scene spotlights the export button. */
+body.shot-cover { overflow: hidden; }
+body.shot-cover .masthead, body.shot-cover .panel, body.shot-cover .preview .hint,
+body.shot-cover .preview .size-tabs { display: none; }
+body.shot-cover .workspace { display: block; padding: 0; }
+body.shot-cover .preview { display: block; }
+body.shot-cover canvas {
+  width: 100vw; height: 100vh; max-width: none; max-height: none;
+  border-radius: 0; box-shadow: none;
+}
+body.shot-export #export-all { outline: 3px solid #7ee2a8; outline-offset: 2px; }

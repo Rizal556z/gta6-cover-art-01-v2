@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice City Cover Studio — GTA 6-style cover art maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="masthead">
+  <div>
+    <h1>Vice City Cover Studio</h1>
+    <p>Turn your photos into GTA 6-style multi-panel cover art. Offline — photos never leave your machine.</p>
+  </div>
+  <p class="tag">Original design · No Rockstar logos, artwork or fonts</p>
+</header>
+<main class="workspace">
+  <aside class="panel" id="photos-panel" aria-label="Photos and panels">
+    <h2>1 · Photos</h2>
+    <label class="dropzone" id="dropzone">
+      <span>Drop photos here or <b>browse</b></span>
+      <input id="files" type="file" accept="image/*" multiple>
+    </label>
+    <div class="tray" id="tray" aria-label="Your photos"></div>
+    <h2>2 · Panels</h2>
+    <p class="hint">Click a panel on the cover, or pick one below, then crop it.</p>
+    <div class="panel-list" id="panel-list"></div>
+    <label>Photo in this panel
+      <select id="panel-photo"></select>
+    </label>
+    <label>Zoom <span class="val" id="zoom-val">100%</span>
+      <input id="panel-zoom" type="range" min="80" max="220" value="100">
+    </label>
+    <label>Pan left–right <span class="val" id="panx-val">0</span>
+      <input id="panel-panx" type="range" min="-30" max="30" value="0">
+    </label>
+    <label>Pan up–down <span class="val" id="pany-val">0</span>
+      <input id="panel-pany" type="range" min="-30" max="30" value="0">
+    </label>
+    <button id="fill-all" type="button">Fill every panel with this photo</button>
+  </aside>
+
+  <section class="preview" aria-label="Cover preview">
+    <canvas id="cover" width="1080" height="1080"></canvas>
+    <p class="hint">Drag a photo from the tray onto a panel. Click a panel to crop it.</p>
+    <div class="size-tabs" id="size-tabs" role="group" aria-label="Preview size">
+      <button type="button" data-size="0" class="active">1080 × 1080</button>
+      <button type="button" data-size="1">1080 × 1350</button>
+      <button type="button" data-size="2">1920 × 1080</button>
+    </div>
+  </section>
+
+  <aside class="panel" id="words-panel" aria-label="Words, look and export">
+    <h2>3 · Layout</h2>
+    <div class="choices" id="layouts">
+      <button type="button" data-layout="grid">4-panel grid</button>
+      <button type="button" data-layout="hero" class="active">Hero + three</button>
+      <button type="button" data-layout="full">Full-bleed</button>
+      <button type="button" data-layout="triptych">Triptych</button>
+      <button type="button" data-layout="strip">Poster strip</button>
+      <button type="button" data-layout="diagonal">Diagonal split</button>
+    </div>
+    <h2>4 · Grade</h2>
+    <div class="choices grades" id="grades">
+      <button type="button" data-grade="sunset"><i style="--g1:#ff7a3d;--g2:#c2187a"></i>Sunset</button>
+      <button type="button" data-grade="neon" class="active"><i style="--g1:#ff2e88;--g2:#22d3ee"></i>Neon</button>
+      <button type="button" data-grade="warm"><i style="--g1:#ffb347;--g2:#b45309"></i>Warm</button>
+      <button type="button" data-grade="mono"><i style="--g1:#e5e7eb;--g2:#4c1d95"></i>Mono</button>
+      <button type="button" data-grade="teal"><i style="--g1:#2dd4bf;--g2:#f97316"></i>Teal-orange</button>
+      <button type="button" data-grade="faded"><i style="--g1:#f5d0a9;--g2:#94a3b8"></i>Faded film</button>
+    </div>
+    <h2>5 · Words</h2>
+    <label>Caption
+      <input id="caption" type="text" maxlength="32" value="VICE CITY NIGHTS">
+    </label>
+    <label>Subtitle
+      <input id="subtitle" type="text" maxlength="48" value="A SUNSET GETAWAY IN LEONIDA">
+    </label>
+    <label>Badge / sticker
+      <input id="badge" type="text" maxlength="18" value="EST. 2026">
+    </label>
+    <h2>6 · Finish</h2>
+    <div class="presets" id="presets">
+      <button type="button" data-preset="sunset-getaway">Sunset Getaway</button>
+      <button type="button" data-preset="neon-nights">Neon Nights</button>
+      <button type="button" data-preset="golden-strip">Golden Hour Strip</button>
+    </div>
+    <label class="check"><input id="fx-grain" type="checkbox" checked> Film grain</label>
+    <label class="check"><input id="fx-vignette" type="checkbox" checked> Vignette</label>
+    <label class="check"><input id="fx-halftone" type="checkbox"> Halftone dots</label>
+    <button id="export-all" type="button" class="primary">Export all 3 sizes</button>
+    <div class="single-exports">
+      <button type="button" data-export="0">PNG 1080²</button>
+      <button type="button" data-export="1">PNG 1080×1350</button>
+      <button type="button" data-export="2">PNG 1920×1080</button>
+    </div>
+    <p id="status" role="status"></p>
+  </aside>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
